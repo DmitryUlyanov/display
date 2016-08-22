@@ -19,7 +19,8 @@ dependencies = {
    "image >= 1.0",
    "luasocket >= 2.0",
    "lua-cjson >= 2.1.0",
-   "async >= 1.0"
+   "async >= 1.0",
+   "graphicsmagick"
 }
 
 build = {
