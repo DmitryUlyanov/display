@@ -8,6 +8,7 @@ local http = require 'socket.http'
 local ltn12 = require 'ltn12'
 local json = require 'cjson'
 local ffi = require 'ffi'
+local gm = require 'graphicsmagick'
 
 require 'image'  -- image module is broken for now
 local torch = require 'torch'
@@ -78,10 +79,11 @@ function M.image(img, opts)
 
   img = normalize(img, opts)
 
-  -- write to in-memory compressed JPG
-  local inmem_img = image.compressJPG(img)
-  local imgdata = 'data:image/jpg;base64,' .. mime.b64(ffi.string(inmem_img:data(), inmem_img:nElement()))
+  -- write to in-memory compressed PNG
+  gm_img = gm.Image(img, 'RGB', 'DHW')
+  img_data, img_size = gm_img:format('png'):toBlob()
 
+  local imgdata = 'data:image/png;base64,' .. mime.b64(ffi.string(img_data, img_size))
 
   return pane('image', opts.win, opts.title, { src=imgdata, labels=opts._labels, width=opts.width })
 end

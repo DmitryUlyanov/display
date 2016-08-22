@@ -2,7 +2,7 @@ package = "display"
 version = "scm-0"
 
 source = {
-   url = "git://github.com/szym/display",
+   url = "git://github.com/dulyanov/display",
    dir = "display"
 }
 
