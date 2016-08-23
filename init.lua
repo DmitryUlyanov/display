@@ -80,8 +80,14 @@ function M.image(img, opts)
   img = normalize(img, opts)
 
   -- write to in-memory compressed PNG
-  gm_img = gm.Image(img, 'RGB', 'DHW')
-  img_data, img_size = gm_img:format('png'):toBlob()
+  local img_data, img_size
+  if img:size(1) == 3 then
+    local gm_img = gm.Image(img, 'RGB', 'DHW')
+    img_data, img_size = gm_img:format('png'):toBlob()
+  else
+    local gm_img = gm.Image(img, 'I', 'DHW')
+    img_data, img_size = gm_img:format('png'):toBlob()
+  end
 
   local imgdata = 'data:image/png;base64,' .. mime.b64(ffi.string(img_data, img_size))
 
