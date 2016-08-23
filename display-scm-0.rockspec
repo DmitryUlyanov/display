@@ -2,7 +2,7 @@ package = "display"
 version = "scm-0"
 
 source = {
-   url = "git://github.com/dulyanov/display",
+   url = "git://github.com/DmitryUlyanov/display",
    dir = "display"
 }
 
@@ -19,7 +19,8 @@ dependencies = {
    "image >= 1.0",
    "luasocket >= 2.0",
    "lua-cjson >= 2.1.0",
-   "async >= 1.0"
+   "async >= 1.0",
+   "graphicsmagick"
 }
 
 build = {
