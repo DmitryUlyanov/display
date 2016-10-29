@@ -14,7 +14,7 @@ require 'image'  -- image module is broken for now
 local torch = require 'torch'
 
 
-M = {
+local M = {
   url = 'http://localhost:8000/events'
 }
 
